@@ -18,8 +18,8 @@ const register = async (req, res) => {
             movimientos: movimientos._id
         }
         let result = await userService.save(newUser);
-        const token = jwt.sign(result, config.app.TOKEN, { expiresIn: "30m" })
-        res.send({ status: "success", message: "User registered", payload: token });
+        // const token = jwt.sign(result, config.app.TOKEN, { expiresIn: "30m" })
+        res.send({ status: "success", message: "User registered" });
     } catch (error) {
         res.status(500).send({ status: "error", error: "Internal error", trace: error })
     }

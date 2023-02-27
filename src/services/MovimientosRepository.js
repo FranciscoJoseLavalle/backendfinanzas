@@ -9,10 +9,7 @@ export default class MovimientosRepository extends GenericRepository {
     addMovement = async (params, data) => {
         try {
             let movement = await this.getBy(params, this.model)
-            console.log(movement);
-            console.log(data);
             movement.movimiento.push(data);
-            console.log(movement);
             let movementUpdated = await this.editOne(params, { movimiento: movement.movimiento })
             return movementUpdated;
         } catch (error) {
@@ -39,13 +36,17 @@ export default class MovimientosRepository extends GenericRepository {
 
     filterMovement = async (params, data) => {
         try {
-            console.log(params);
             let movement = await this.getBy(params, this.model)
             let movementFiltered = [];
             movement.movimiento.forEach(element => {
-                console.log('hola3');
-                if (element.type === data) {
-                    movementFiltered.push(element);
+                if (data === "Ingreso" || data === "Egreso") {
+                    if (element.type === data) {
+                        movementFiltered.push(element);
+                    }
+                } else {
+                    if (element.categoria === data) {
+                        movementFiltered.push(element);
+                    }
                 }
             })
             return movementFiltered;

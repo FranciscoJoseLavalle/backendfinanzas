@@ -17,6 +17,11 @@ export default class User {
                 // type: mongoose.SchemaType.ObjectId, // Me tiraba error
                 type: String,
                 ref: 'Movimientos'
+            },
+            ciclos: {
+                // type: mongoose.SchemaType.ObjectId, // Me tiraba error
+                type: String,
+                ref: 'Ciclos'
             }
         }
     }
