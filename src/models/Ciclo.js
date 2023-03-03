@@ -4,7 +4,9 @@ export default class Ciclo {
     }
     static get schema() {
         return {
-            Ciclo: Array
+            name: String,
+            date: String,
+            movimientos: Array
         }
     }
 }

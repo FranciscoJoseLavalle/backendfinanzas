@@ -1,6 +1,8 @@
 import express from 'express';
 import sessionsRouter from './routes/sessions.router.js'
 import movimientosRouter from './routes/movimientos.router.js'
+import cicloRouter from './routes/ciclo.router.js'
+import ciclosRouter from './routes/ciclos.router.js'
 import __dirname from './utils.js'
 import MongoStore from "connect-mongo";
 import session from "express-session";
@@ -44,6 +46,8 @@ app.post('/pruebaDatos', authMiddleware, (req, res) => {
 })
 app.use('/api/sessions', sessionsRouter);
 app.use('/movements', movimientosRouter)
+app.use('/ciclo', cicloRouter)
+app.use('/ciclos', ciclosRouter)
 
 
 

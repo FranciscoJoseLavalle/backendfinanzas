@@ -66,4 +66,15 @@ export default class MovimientosRepository extends GenericRepository {
             return { status: "error", error: "Internal error", trace: error }
         }
     }
+
+    deleteAllMovements = async (params) => {
+        try {
+            let movement = await this.getBy(params, this.model)
+            movement.movimiento = []
+            let movementUpdated = await this.editOne(params, { movimiento: movement.movimiento })
+            return movementUpdated;
+        } catch (error) {
+            return { status: "error", error: "Internal error", trace: error }
+        }
+    }
 }
