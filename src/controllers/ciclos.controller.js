@@ -32,10 +32,19 @@ const saveCiclo = async (req, res) => {
     try {
         const { cid, mid } = req.params;
         const { ciclo } = req.body;
-        console.log(cid, ciclo);
         let ciclos = await ciclosService.saveCiclo({ _id: cid }, ciclo, {_id: mid})
-        console.log("Llegupe");
         res.send({ status: "success", message: "Ciclo saved successfully", payload: ciclos, session: req.session.user })
+    } catch (error) {
+        res.status(500).send({ status: "error", error: "Internal error", trace: error })
+    }
+}
+
+const deleteCiclo = async (req, res) => {
+    try {
+        const { cid } = req.params;
+        const { date } = req.body;
+        let ciclos = await ciclosService.deleteCiclo({ _id: cid }, date)
+        res.send({ status: "success", message: "Ciclo deleted successfully", payload: ciclos, session: req.session.user })
     } catch (error) {
         res.status(500).send({ status: "error", error: "Internal error", trace: error })
     }
@@ -44,5 +53,6 @@ const saveCiclo = async (req, res) => {
 export default {
     authMiddleware,
     getCiclos,
-    saveCiclo
+    saveCiclo,
+    deleteCiclo
 }

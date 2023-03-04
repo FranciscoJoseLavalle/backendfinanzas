@@ -17,4 +17,11 @@ export default class CiclosRepository extends GenericRepository {
         await movimientosService.deleteAllMovements(filter)
         return finishedCiclos;
     }
+
+    deleteCiclo = async (params, document) => {
+        let ciclos = await this.getBy(params)
+        ciclos.ciclos = ciclos.ciclos.filter(ciclo => ciclo.date !== document);
+        let finishedCiclos = await this.editOne(params, ciclos);
+        return finishedCiclos;
+    }
 }

@@ -7,6 +7,7 @@ const router = Router();
 const authMiddleware = movimientosController.authMiddleware;
 
 router.get('/:cid', ciclosController.getCiclos);
-router.post('/:cid/:mid', authMiddleware,ciclosController.saveCiclo);
+router.post('/:cid/:mid', authMiddleware, ciclosController.saveCiclo);
+router.delete('/:cid', authMiddleware, ciclosController.deleteCiclo);
 
 export default router;
